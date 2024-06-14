@@ -1,0 +1,40 @@
+<!-- templates/processed_file_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Processed File List</title>
+</head>
+<body>
+    <h1>Processed Results</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Process</button>
+    </form>
+
+    <h2>Results</h2>
+    <ul>
+        {% for result in page_obj %}
+            <li>{{ result.data }}</li>  <!-- Adjust according to your ProcessedFile model fields -->
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
