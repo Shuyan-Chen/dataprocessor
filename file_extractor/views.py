@@ -6,7 +6,6 @@ from .excel_processor import process_excel_file
 
 
 
-
 class FileUploadViewSet(ModelViewSet):
     queryset = UploadedFile.objects.all()
     serializer_class = UploadedFileSerializer
@@ -16,7 +15,6 @@ class FileUploadViewSet(ModelViewSet):
         uploaded_file = serializer.save()
         file_path = uploaded_file.file.path
         processed_data = process_excel_file(file_path)
-
 
         if processed_data is not None: 
             processed_data_instances = [

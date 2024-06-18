@@ -1,10 +1,8 @@
 import pandas as pd
 
-import pandas as pd
 
 def process_excel_file(file_path):
     processed_data = []
-
     try:
         excel_file = pd.ExcelFile(file_path)
         for sheet_name in excel_file.sheet_names:
