@@ -11,5 +11,5 @@ class RegisterAPIView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         if response.status_code == 201:
-            return redirect(reverse('upload'))
+            return redirect(reverse('login'))
         return response
