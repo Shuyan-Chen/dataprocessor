@@ -15,6 +15,7 @@ class RegisterAPIView(CreateAPIView):
         if response.status_code == 201:
             return redirect(reverse('login'))
         return response
+ 
     
 class CustomLoginView(LoginView):
 
