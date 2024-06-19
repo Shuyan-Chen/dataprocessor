@@ -25,6 +25,7 @@ class RegisterView(CreateAPIView):
  
     
 class LoginView(APIView):
+
     def get(self, request):
         return Response({'message': 'Login page'})
 
@@ -35,7 +36,8 @@ class LoginView(APIView):
             password = serializer.validated_data['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                return Response(status=status.HTTP_200_OK)
+                upload_url = reverse('upload')
+                return redirect(upload_url)
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
