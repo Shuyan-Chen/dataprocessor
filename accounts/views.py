@@ -16,7 +16,7 @@ class RegisterView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         if response.status_code == 201:
-            login_url = request.build_absolute_uri(reverse('login'))
+            login_url = reverse('login')
             print(f"Registration successful, redirecting to: {login_url}")
             return redirect(login_url)
         else:
