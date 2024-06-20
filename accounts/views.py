@@ -20,6 +20,7 @@ class RegisterView(CreateAPIView):
             response['Location'] = login_url
             return response
         return response
+  
     
 class LoginView(APIView):
     def get(self, request):

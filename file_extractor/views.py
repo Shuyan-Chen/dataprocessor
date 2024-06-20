@@ -5,7 +5,6 @@ from .serializers import UploadedFileSerializer, ProcessedDataSerializer
 from .excel_processor import process_excel_file
 
 
-
 class FileUploadViewSet(ModelViewSet):
     queryset = UploadedFile.objects.all()
     serializer_class = UploadedFileSerializer
@@ -35,7 +34,6 @@ class FileUploadViewSet(ModelViewSet):
             return UploadedFileSerializer
         return super().get_serializer_class()
     
-
 
 class ProcessedDataViewSet(ModelViewSet):
     queryset = ProcessedData.objects.all()

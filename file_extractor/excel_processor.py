@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def process_excel_file(file_path):
     processed_data = []
     try:
