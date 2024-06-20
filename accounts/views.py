@@ -16,16 +16,12 @@ class RegisterView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         if response.status_code == 201:
-            login_url = reverse('login')
-            print(f"Registration successful, redirecting to: {login_url}")
-            return redirect(login_url)
-        else:
-            print(f"Registration failed with status code: {response.status_code}")
+            login_url = request.build_absolute_uri(reverse('login'))
+            response['Location'] = login_url
+            return response
         return response
- 
     
 class LoginView(APIView):
-
     def get(self, request):
         return Response({'message': 'Login page'})
 
@@ -36,8 +32,8 @@ class LoginView(APIView):
             password = serializer.validated_data['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                upload_url = reverse('upload')
-                return redirect(upload_url)
+                upload_url = request.build_absolute_uri(reverse('upload'))
+                return Response({'upload_url': upload_url}, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
