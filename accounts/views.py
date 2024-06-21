@@ -16,9 +16,7 @@ class RegisterView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         if response.status_code == 201:
-            login_url = request.build_absolute_uri(reverse('login'))
-            response['Location'] = login_url
-            return response
+            return Response({'status': 'success', 'message': 'User registered successfully'}, status=201)
         return response
   
     
