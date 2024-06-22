@@ -138,3 +138,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'django.contrib.auth.backends.RemoteUserBackend',
 ]
+
+
+ALLOWED_HOSTS = ['*']
