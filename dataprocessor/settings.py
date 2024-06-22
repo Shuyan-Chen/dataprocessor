@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#(q&c%gu0^+8)jv39pcnxy5@4qj#ia6z78_n-_--p$2l4f4r92
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -139,5 +139,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.RemoteUserBackend',
 ]
 
-
-ALLOWED_HOSTS = ['*']
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+}
