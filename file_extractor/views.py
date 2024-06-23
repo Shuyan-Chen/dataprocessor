@@ -28,11 +28,6 @@ class FileUploadViewSet(ModelViewSet):
                 for data in processed_data
             ]
             ProcessedData.objects.bulk_create(processed_data_instances)
-
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return UploadedFileSerializer
-        return super().get_serializer_class()
     
 
 class ProcessedDataViewSet(ModelViewSet):
