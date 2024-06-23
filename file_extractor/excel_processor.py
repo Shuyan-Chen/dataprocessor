@@ -12,7 +12,7 @@ def process_excel_file(file_path):
                         column_name = worksheet.columns[col_num]
                         processed_data.append({
                             'name': str(column_name),
-                            'value': str(value) if pd.notnull(value) else None,
+                            'value': str(value),
                             'sheet_name': sheet_name,
                             'row_number': row_num + 1,
                             'column_number': col_num + 1
@@ -20,4 +20,4 @@ def process_excel_file(file_path):
     except Exception as e:
         raise ValueError(f'Error reading Excel file: {e}')
 
-    return [data for data in processed_data if data['value'] is not None]
+    return processed_data
